@@ -1,0 +1,12 @@
+<style>
+    .sidebar-right {
+        font-size: 14px;
+    }
+</style>
+<div class="col-12 col-lg-3 sidebar-right pt-2 {{classes}}">
+    <ul class="">
+        {% for page in pages('review') if page.title and not page.hidden %}
+            <li><a href="{{ page.url }}" class="mb-1">{{ page.title }} ({{ page.meta.year }})</a></li>
+        {% endfor %}
+    </ul>   
+</div>

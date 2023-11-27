@@ -1,0 +1,32 @@
+{% extends "base.twig" %}
+
+{% set titleWithYear = meta.title ~ " (" ~ meta.year ~ ")" %}
+
+{% block title %}{{site_title}} | reviews | {{ titleWithYear }}{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col">
+        <div class="row">
+            <div class="col col-md-3 pt-2">
+                <img src="{{meta.poster}}" alt="{{ titleWithYear }}" class="d-block w-100 mx-auto">
+                <h1 class="fs-4 mt-3" style="font-weight:900">{{ titleWithYear }}</h1>
+                <ul class="list-unstyled">
+                    <li class="mb-2 d-flex flex-row align-items-center">
+                        <span class="badge bg-primary me-2">director</span>{{ meta.director }}
+                    </li>
+                    <li class="mb-2 d-flex flex-row align-items-center">
+                        <span class="badge bg-primary me-2">country</span>{{ meta.country }}
+                    </li>
+                </ul>
+            </div>
+            {% set test = content|split("<h2>review</h2>") %}
+            <div class="col col-md-9 prose">
+                {{ current_page.raw_content|split('## review')[1]|markdown }}
+            </div>
+        </div>    
+    </div>
+    {% include "_sidebar.twig" with {"classes":"pt-2"} %}    
+</div>
+
+{% endblock %}

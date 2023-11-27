@@ -1,0 +1,62 @@
+<html>
+<head><meta charset="utf-8">
+    <title>{% block title %}{{site_title}}{% endblock %}</title>
+
+    <link rel="icon" type="image/x-icon" href="ufo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+        :root {
+            --bs-primary-rgb: 140, 104, 205;
+        }
+        * {
+            font-family: Inter, sans-serif !important;
+        }
+        html {
+            max-width: 100vw;
+            /* font-size: 1.35rem; */
+        }
+        body {
+            background-color: #f9f9f9
+        }
+        a {
+            color: #8c68cd !important;
+            text-decoration: none;
+            border-bottom: 1px solid;
+        }
+        a:hover {
+            border-bottom: 2px solid;
+        }
+        ul {
+            list-style-type: disc;
+        }
+        ul > li > ul {
+            list-style-type: square;
+        }        
+        li::marker {
+            color: #666;
+        }
+        .prose {
+            font-size: 20px;
+            line-height: 1.7;
+        }     
+    </style>
+
+    <nav class="nav flex-row justify-content-end align-items-center mx-3">
+        <a href="/brainlog" class="nav-link brand d-flex align-items-center me-auto text-dark border-0">
+            <img src="ufo.png" alt="escapeplod ufo" style="width:2.5vw"><h1 class="fs-3 fw-bold mb-0 ms-3">escapeplod</h1>
+        </a>
+        <a href="{{ "reviews"|link }}" class="nav-link">reviews</a>
+        <a href="{{ "wishlist"|link }}" class="nav-link">wishlist</a> 
+    </nav>
+    <div class="container my-5">
+        {% block main %}{% endblock %}
+    </div>    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

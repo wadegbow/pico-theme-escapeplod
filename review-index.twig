@@ -1,0 +1,84 @@
+{% extends "base.twig" %}
+
+{% block title %}{{site_title}} | reviews{% endblock %}
+
+{% block main %}
+<style>
+    .card-img-top {
+        width: 100%;
+        object-fit: cover;
+    }
+    .ratio-27x40, .ratio-poster {
+        --bs-aspect-ratio: calc(40 / 27 * 100%);
+    }        
+    .ratio-9x16 {
+        --bs-aspect-ratio: calc(16 / 9 * 100%);
+    }
+    .ratio-4x5 {
+        --bs-aspect-ratio: calc(5 / 4 * 100%);
+    }                 
+    .ratio-3x4 {
+        --bs-aspect-ratio: calc(4 / 3 * 100%);
+    }
+    .ratio-2x3 {
+        --bs-aspect-ratio: calc(3 / 2 * 100%);
+    }
+    .card {
+        width: calc(25% - 1rem);
+        border-radius: 5px 5px 5px 5px;
+        border: 1px #dcdcdc solid;
+        font-size: 14px;
+        box-shadow: 1px 2px 0px 0px rgba(0, 0, 0, 0.07);
+    }
+    .card:hover {
+        box-shadow: 1px 2px 0px 0px rgba(0, 0, 0, 0.14);
+    }
+    .card-body {
+        padding: .5rem;
+    }
+    .card-body a:hover {
+    }
+    .row.d-flex.gap-3 {
+        padding-right: calc(var(--bs-gutter-x) * .5);
+        padding-left: calc(var(--bs-gutter-x) * .5);
+    }    
+</style>
+
+<div class="row">
+    <div class="col">
+        <h1 class="ms-0">thoughts about movies</h1>
+        <div class="row d-flex gap-3">
+            {% for page in pages('review') if page.title and not page.hidden %}
+                {% set titleWithYear = page.meta.title ~ " (" ~ page.meta.year ~ ")" %}
+                <div class="card p-0">
+                    {% set path = "review/" ~ titleWithYear %}
+                    <a href="{{ path|link }}" class="ratio ratio-poster border-0"><img src="{{ page.meta.poster }}" class="card-img-top" alt="{{ titleWithYear }}"></a>
+                    <div class="card-body">
+                        <p class="card-text"><a href="{{ path|link  }}" class="d-inline-block w-100 fw-bold border-bottom-0">{{ titleWithYear }}</a></p>                    
+                    </div>
+                </div>
+            {% endfor %}    
+        </div>
+    </div>
+    {% include "_sidebar.twig" with {"classes":"d-none d-lg-block"} %}
+</div>    
+
+<style>
+    @media (min-width: 576px) {
+        .card {
+            width: calc(50% - 1rem);
+        }
+    }
+    @media (min-width: 768px) {
+    }
+    @media (min-width: 992px) {
+        .card {
+            width: calc(25% - 1rem);
+        }        
+    }
+    @media (min-width: 1200px) {
+    }
+    @media (min-width: 1400px) {
+    }
+</style>
+{% endblock %}
